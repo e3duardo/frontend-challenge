@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import "./style.less";
 
-export default class Label extends Component {
+export default class Button extends Component {
+
 	render() {
+		const {active} = this.props;
 		return (
-			<div className={`Label`}>
-			</div>
+			<button className={`Button ${active?'Button--active':''}`} onClick={this.handleClick}>
+				Add to favourites
+			</button>
 		);
 	}
 }

@@ -1,2 +1,25 @@
-.Button{
+.ButtonIcon{
+	background: none;
+	border: none;
+	&:focus{
+		outline: none;
+	}
+	&:before{
+		background-image: url('./assets/icon-arrow-grey.svg');
+		background-size: contain;
+		background-position: center;
+		background-repeat: no-repeat;
+		width:16px;
+		height: 16px;
+		content: "";
+		display: block;
+	}
+	&:hover:before{
+		background-image: url('./assets/icon-arrow-white.svg');
+	}
+
+	&:hover .MovieCardForeground{
+		// display: flex;
+		opacity: 1!important;
+	}
 }

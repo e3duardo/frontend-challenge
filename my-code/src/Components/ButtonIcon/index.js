@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./style.less";
 
-export default class Button extends Component {
+export default class ButtonIcon extends Component {
 	render() {
 		return (
-			<div className={`Button`}>
-			</div>
+			<button className={`ButtonIcon`}>
+			</button>
 		);
 	}
 }

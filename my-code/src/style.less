@@ -37,4 +37,22 @@ body{
 	font-size: var(--font-size);
 	font-weight: var(--font-weigh);
 	line-height: var(--line-height);
+	width: 100vw;
+	overflow-x: hidden;
+	background-color: var(--dark-color);
+}
+
+*,*::before,*::after {
+	box-sizing: border-box;
+}
+button:focus{
+	outline: none;
+}
+
+a, input, button {
+	transition: var(--transition);
+}
+
+p, small {
+	margin: 0;
 }

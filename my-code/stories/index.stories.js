@@ -11,6 +11,7 @@ import Button from '../src/Components/Button';
 import ButtonIcon from '../src/Components/ButtonIcon';
 import Label from '../src/Components/Label';
 
+import '../src/normalize.less';
 import '../src/style.less';
 
 storiesOf('Components', module)
@@ -29,6 +30,9 @@ storiesOf('Components', module)
   ))
   .add('Button', () => (
     <Button />
+  ))
+  .add('Button active', () => (
+    <Button active={true} />
   ))
   .add('ButtonIcon', () => (
     <ButtonIcon />
