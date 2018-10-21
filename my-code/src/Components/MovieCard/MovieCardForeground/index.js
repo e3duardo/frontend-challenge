@@ -1,15 +1,17 @@
 import React, { Component } from "react";
+import {NavLink} from "react-router-dom";
 import "./style.less";
 
 export default class MovieCardForeground extends Component {
 	render() {
+		const {movie} = this.props;
 		return (
 			<div className="MovieCardForeground">
 				<button className="MovieCardForeground__Icon"></button>
-				<div className="MovieCardForeground__Title">
-					<h2>What We Do In the Shadows</h2>
-					2018
-				</div>
+				<NavLink className="MovieCardForeground__Title" to={`/movies/${movie.imdbID}`}>
+					<h2>{movie.Title}</h2>
+					{movie.Year}
+				</NavLink>
 			</div>
 		);
 	}

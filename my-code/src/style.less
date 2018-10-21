@@ -36,10 +36,12 @@ body{
 	font-family: 'Roboto', sans-serif;
 	font-size: var(--font-size);
 	font-weight: var(--font-weigh);
-	line-height: var(--line-height);
+	line-height: var(--font-height);
 	width: 100vw;
 	overflow-x: hidden;
 	background-color: var(--dark-color);
+	color: var(--default-color);
+	margin: 0;
 }
 
 *,*::before,*::after {
@@ -53,6 +55,41 @@ a, input, button {
 	transition: var(--transition);
 }
 
-p, small {
+p, h1, h2, h3, small {
 	margin: 0;
+}
+
+.Badge{
+	font-size: var(--font-size);
+	font-weight: var(--font-weight);
+	line-height: var(--font-height);
+	color: var(--dark-color);
+	background: var(--secundary-color);
+	padding: 4px 6px;
+	border-radius: var(--radius);
+}
+
+.container{
+	max-width: var(--container-size);
+	width: 100vw;
+	margin: 0 auto;
+}
+
+.row{
+	display: flex;
+	flex: 0 1 auto;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin-left: -10px;
+	margin-right: -10px;
+}
+[class^="col-"]{
+	padding: 0 10px;
+}
+.generate-cols(12);
+.generate-cols(@n, @i: 1) when (@i =< @n) {
+  .col-@{i} {
+    width: (@i * 100% / @n);
+  }
+  .generate-cols(@n, (@i + 1));
 }
