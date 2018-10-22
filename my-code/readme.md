@@ -1,6 +1,3 @@
-http://www.omdbapi.com/?i=tt3896198&apikey=1f42f06a
-
-
 # Frontend Challenge
 
 My attempt to implement Significa Frontend Challenge
@@ -15,8 +12,7 @@ My attempt to implement Significa Frontend Challenge
 - [x] Create movie page
 - [ ] Refactor components using generic names (we can cascade components)
 - [ ] Implement loading
-- [ ] Try to use BEM css (refactor some coding)
+- [ ] Confirm implementation of BEM css (refactor some coding)
 - [ ] Add to favourites in card and movie page
 - [ ] Let search persistent when back from movie page
 - [ ] Create a way to see more movies (infinity scroll maybe)
-s
