@@ -1,16 +1,24 @@
 import { observable, action, computed, runInAction } from 'mobx'
-// import { pesquisarEquipes } from '../../services/api'
-// import { Equipe } from '../../model/Equipe'
+import Movie from '../../models/Movie'
 
 const API_URL = 'http://www.omdbapi.com/?apikey=1f42f06a';
 
 class MovieStore {
 
+	@observable favourites = [];
 	@observable movies = [];
+
+	@action initiateStorage(){
+		const savedFavourites = localStorage.getItem('favourites');
+		if(savedFavourites){
+			this.favourites = JSON.parse(savedFavourites);
+		}
+	}
 
 	@computed get moviesIn() {
 	  return this.movies;
 	}
+
 	@computed get hasMovies() {
 	  return this.movies.length > 0;
 	}
@@ -20,8 +28,15 @@ class MovieStore {
 			this.movies.clear();
 			fetch(`${API_URL}&s=${search}`)
 			.then(result=>result.json())
+			.then(result=>result.Search.map(movieJson=>{
+				const movie = new Movie(movieJson);
+				if(this.favourites.includes(movie.imdb)){
+					movie.setFavourite(true);
+				}
+				return movie;
+			}))
 			.then(
-	            action("fetchSuccess", result => this.movies.replace(result.Search)),
+	            action("fetchSuccess", result => this.movies.replace(result)),
 	            action("fetchError", error => {
 					console.log(error);
 	            })
@@ -30,6 +45,7 @@ class MovieStore {
 			console.error(e);
 		}
 	}
+
 	@action async searchMovie(imdbID){
 		let result = {};
 		try {
@@ -41,55 +57,20 @@ class MovieStore {
 		return result;
 	}
 
-  // @observable equipes = [];
-  // @observable isLoading = false;
-  //
-  // constructor(rootStore){
-  //   this.filtrarEquipes("");
-  // }
-  //
-  // @computed get loading() {
-  //   return this.isLoading;
-  // }
-  //
-  // @action load() {
-  //   this.isLoading = true;
-  // }
-  //
-  // @action loaded() {
-  //   this.isLoading = false;
-  // }
-  //
-  // @action limparEquipes(){
-  //   this.equipes = [];
-  // }
-  //
-  // @computed get listarTodos() {
-  //   return this.equipes;
-  // }
-  //
-  // @action filtrarEquipes(pesquisa){
-  //   this.load();
-  //   this.equipes = [];
-  //   pesquisarEquipes(pesquisa).then(equipesJson => {
-  //     equipesJson.forEach(json => this.updateEquipeFromServer(json));
-  //     this.loaded();
-  //   });
-  // }
-  //
-  // @action updateEquipeFromServer(json) {
-  //   if(json.excluido){
-  //     return;
-  //   }
-  //   const temNaLista = this.equipes.find(equipe => equipe.id === json.id);
-  //
-  //   if (!temNaLista) {
-  //       const equipe = new Equipe(this);
-  //       equipe.updateFromJson(json);
-  //       this.equipes.push(equipe);
-  //   }
-  // }
 
+	@action favorThis(movie){
+		const index = this.favourites.indexOf(movie.imdb);
+
+		if(index < 0){
+			movie.setFavourite(true);
+			this.favourites.push(movie.imdb);
+		}else{
+			movie.setFavourite(false);
+			this.favourites.splice(index, 1 );
+		}
+
+		localStorage.setItem('favourites', JSON.stringify(this.favourites));
+	}
 }
 
 export default MovieStore

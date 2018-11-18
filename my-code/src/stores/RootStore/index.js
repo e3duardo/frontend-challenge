@@ -5,5 +5,7 @@ export default class RootStore {
   constructor() {
     this.uiStore = new UiStore(this);
     this.movieStore = new MovieStore(this);
+	
+	this.movieStore.initiateStorage();
   }
 }

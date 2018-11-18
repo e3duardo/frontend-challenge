@@ -21,7 +21,7 @@ export default class HomePage extends Component {
 					{
 						movieStore.hasMovies?(
 							movieStore.movies.map((movie, index)=>
-								<MovieCard movie={movie} key={movie.imdbID} index={index}/>
+								<MovieCard movie={movie} key={movie.imdb} index={index}/>
 							)
 						):(
 							<NothingHere />

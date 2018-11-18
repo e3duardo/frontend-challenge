@@ -11,4 +11,34 @@
 		width: 100%;
     	height: 100%;
 	}
+
+	&__Favourite{
+		position: absolute;
+		z-index: 1;
+		top: 12px;
+		right: 12px;
+
+		background: none;
+		border:none;
+		background-image: url('./assets/icon-heart-white.svg');
+		background-size: contain;
+		background-position: center;
+		background-repeat: no-repeat;
+		width:var(--font-mid-size);
+		height: var(--font-mid-size);
+		content: "";
+		display: none;
+		cursor: pointer;
+
+		&:hover{
+			background-image: url('./assets/icon-heart-full.svg');
+		}
+	}
+	&:hover &__Favourite{
+		display: block;
+	}
+	&__Favourite--favourite{
+		background-image: url('./assets/icon-heart-full.svg');
+		display: block;
+	}
 }

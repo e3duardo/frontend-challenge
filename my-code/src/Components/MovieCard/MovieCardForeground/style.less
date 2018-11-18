@@ -6,28 +6,9 @@
 	padding: 12px;
 
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: flex-end;
 	display: flex;
 	opacity: 0;
-
-	&__Icon{
-		background: none;
-		border:none;
-    	align-self: flex-end;
-		background-image: url('./assets/icon-heart-white.svg');
-		background-size: contain;
-		background-position: center;
-		background-repeat: no-repeat;
-		width:var(--font-mid-size);
-		height: var(--font-mid-size);
-		content: "";
-		display: block;
-		cursor: pointer;
-
-		&:hover{
-			background-image: url('./assets/icon-heart-full.svg');
-		}
-	}
 
 	&__Title{
 		text-decoration: none;
